@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Jester Project v2 - Expert WhatsApp Automation. Kelola bot WhatsApp Anda secara otomatis 24/7.">
+    <title>Login | Devonax Project v2</title>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Devonax Project Login">
+    <meta property="og:image" content="/banner-image">
+    <link rel="icon" type="image/gif" href="/banner-image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <link rel="stylesheet" href="/assets/jester-theme.css?v=19">
+    <script>
+    (function () {
+        var h = location.hostname;
+        window.__SKIP_TURNSTILE__ = h === 'localhost' || h === '127.0.0.1' || h === '[::1]' || h === '::1';
+        if (!window.__SKIP_TURNSTILE__) {
+            var s = document.createElement('script');
+            s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
+            s.async = true; s.defer = true;
+            document.head.appendChild(s);
+        }
+    })();
+    </script>
+    <style>
+        :root {
+            --primary: #c0c0c0;
+            --accent: #7eb8ff;
+            --accent2: #c084fc;
+            --bg: #060608;
+            --surface: rgba(10,10,14,0.98);
+            --border: rgba(255,255,255,0.07);
+            --text: #e0e0e8;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Outfit', system-ui, sans-serif;
+            min-height: 100vh;
+            min-height: 100dvh;
+            overflow-x: hidden;
+        }
+
+        .auth-shell {
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            max-width: 480px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .auth-hero {
+            flex: 0 0 auto;
+            min-height: 42vh;
+            padding: 48px 28px 36px;
+            background:
+                radial-gradient(ellipse at 20% 0%, rgba(126,184,255,0.18) 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 30%, rgba(192,132,252,0.12) 0%, transparent 50%),
+                linear-gradient(165deg, rgba(18,22,32,0.95) 0%, rgba(8,8,12,0.4) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            position: relative;
+            overflow: hidden;
+        }
+        .auth-hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(120,180,255,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(120,180,255,0.025) 1px, transparent 1px);
+            background-size: 36px 36px;
+            pointer-events: none;
+        }
+        .auth-hero-top {
+            display: flex;
+            align-items: stretch;
+            gap: 14px;
+            margin-bottom: 22px;
+            position: relative;
+            z-index: 1;
+        }
+        .auth-hero-mark {
+            width: 72px; height: 72px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background: rgba(5,5,8,0.85);
+            border: 1px solid rgba(126,184,255,0.25);
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 24px rgba(126,184,255,0.12);
+        }
+        .auth-hero-mark i {
+            font-size: 1.6rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .auth-hero-banner {
+            flex: 1;
+            min-width: 0;
+            min-height: 72px;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(126,184,255,0.22);
+            position: relative;
+            box-shadow: 0 10px 36px rgba(0,0,0,0.45), inset 0 0 0 1px rgba(255,255,255,0.04);
+        }
+        .auth-hero-banner img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            display: block;
+        }
+        .auth-hero-banner-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background: linear-gradient(135deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 100%);
+            pointer-events: none;
+        }
+        .auth-hero-banner::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            z-index: 2;
+            background: linear-gradient(90deg, transparent, rgba(126,184,255,0.5), rgba(192,132,252,0.4), transparent);
+            pointer-events: none;
+        }
+        .auth-hero-title {
+            font-family: 'Outfit', system-ui, sans-serif;
+            font-size: clamp(1.5rem, 6vw, 2rem);
+            font-weight: 900;
+            color: #fff;
+            line-height: 1.25;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            position: relative; z-index: 1;
+        }
+        .auth-hero-sub {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.5;
+            max-width: 320px;
+            position: relative; z-index: 1;
+        }
+
+        .auth-sheet {
+            flex: 1;
+            background: var(--surface);
+            border-radius: 32px 32px 0 0;
+            margin-top: -24px;
+            padding: 32px 28px calc(32px + env(safe-area-inset-bottom));
+            border: 1px solid var(--border);
+            border-bottom: none;
+            box-shadow: 0 -20px 60px rgba(0,0,0,0.55);
+            position: relative; z-index: 2;
+            animation: sheetUp 0.55s cubic-bezier(0.22,1,0.36,1) both;
+        }
+        @keyframes sheetUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .auth-sheet::before {
+            content: '';
+            position: absolute; top: 10px; left: 50%;
+            transform: translateX(-50%);
+            width: 44px; height: 4px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.12);
+        }
+
+        h1 {
+            font-family: 'Outfit', system-ui, sans-serif;
+            font-size: 1.15rem;
+            letter-spacing: 4px;
+            color: #fff;
+            margin: 12px 0 4px;
+            text-align: center;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 0.62rem;
+            color: #484858;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 26px;
+            font-family: 'Outfit', system-ui, sans-serif;
+        }
+
+        .field { margin-bottom: 16px; }
+
+        label {
+            display: block;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 7px;
+            color: rgba(255,255,255,0.28);
+        }
+
+        .input-wrap { position: relative; }
+        .input-wrap i {
+            position: absolute; left: 16px; top: 50%;
+            transform: translateY(-50%);
+            color: #2a2a3a;
+            font-size: 0.85rem;
+            pointer-events: none;
+            transition: color 0.3s;
+        }
+        .input-wrap:focus-within i { color: var(--accent); }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 16px;
+            padding: 15px 16px 15px 46px;
+            color: #fff;
+            font-family: 'Outfit', system-ui, sans-serif;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+            -webkit-appearance: none;
+            min-height: 52px;
+        }
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: rgba(126,184,255,0.35);
+            background: rgba(126,184,255,0.04);
+            box-shadow: 0 0 0 3px rgba(126,184,255,0.06);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px 24px;
+            border-radius: 999px;
+            border: none;
+            background: linear-gradient(135deg, var(--accent) 0%, #5a9ae8 50%, var(--accent2) 100%);
+            color: #050508;
+            font-family: 'Outfit', system-ui, sans-serif;
+            font-weight: 900;
+            font-size: 0.72rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.3s, filter 0.3s;
+            box-shadow: 0 8px 28px rgba(126,184,255,0.25);
+            margin-top: 12px;
+            min-height: 54px;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 36px rgba(126,184,255,0.35);
+            filter: brightness(1.05);
+        }
+        .btn:active { transform: scale(0.98); }
+
+        .footer-links {
+            margin-top: 24px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.3);
+        }
+        .footer-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: #fff; }
+
+        #message {
+            margin-top: 14px;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: none;
+            padding: 11px 14px;
+            border-radius: 14px;
+        }
+        .error   { color: #ff6b87; background: rgba(255,70,90,0.07); border: 1px solid rgba(255,70,90,0.18); }
+        .success { color: #5ee87a; background: rgba(80,220,120,0.07); border: 1px solid rgba(80,220,120,0.2); }
+        .info    { color: #7eb8ff; background: rgba(120,180,255,0.06); border: 1px solid rgba(120,180,255,0.15); }
+
+        .turnstile-wrap { display: flex; justify-content: center; margin: 16px 0 8px; }
+
+        .forgot-link {
+            display: block;
+            margin-top: 10px;
+            text-align: right;
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.35);
+        }
+        .forgot-link button {
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-family: 'Outfit', system-ui, sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 0;
+        }
+        .forgot-link button:hover { color: #fff; }
+
+        .support-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0,0,0,0.88);
+            backdrop-filter: blur(6px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .support-card {
+            width: 100%;
+            max-width: 400px;
+            background: #0d0d12;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 22px;
+            padding: 24px;
+            text-align: left;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .support-card h3 {
+            font-family: 'Outfit', system-ui, sans-serif;
+            font-size: 0.85rem;
+            color: #fff;
+            letter-spacing: 1px;
+            text-align: center;
+            margin: 0 0 8px;
+        }
+        .support-card .sub {
+            text-align: center;
+            color: #666;
+            font-size: 0.78rem;
+            line-height: 1.45;
+            margin-bottom: 16px;
+        }
+        .support-wa-block {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(37,211,102,0.18);
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 12px;
+        }
+        .support-wa-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .support-wa-label {
+            font-size: 0.55rem;
+            color: #555;
+            letter-spacing: 1px;
+            font-family: 'Outfit', system-ui, sans-serif;
+            margin-bottom: 4px;
+        }
+        .support-wa-number {
+            font-family: 'Outfit', system-ui, sans-serif;
+            font-size: 0.82rem;
+            color: #fff;
+        }
+        .support-warn {
+            background: rgba(255,59,59,0.08);
+            border: 1px solid rgba(255,59,59,0.22);
+            color: #ff6666;
+            font-family: 'Outfit', system-ui, sans-serif;
+            font-size: 0.76rem;
+            font-weight: 700;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+        .support-reset-box {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 14px;
+        }
+        .support-reset-box h4 {
+            font-family: 'Outfit', system-ui, sans-serif;
+            font-size: 0.58rem;
+            color: var(--accent);
+            letter-spacing: 1.5px;
+            margin: 0 0 8px;
+        }
+        .support-reset-box p {
+            font-family: 'Outfit', system-ui, sans-serif;
+            font-size: 0.76rem;
+            color: #888;
+            margin: 0 0 8px;
+            line-height: 1.4;
+        }
+        .support-reset-list {
+            margin: 0;
+            padding-left: 18px;
+            color: #ccc;
+            font-family: 'Outfit', system-ui, sans-serif;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        .btn-copy-wa {
+            background: rgba(37,211,102,0.1);
+            border: 1px solid rgba(37,211,102,0.3);
+            color: #25D366;
+            padding: 8px 10px;
+            border-radius: 8px;
+            font-size: 0.55rem;
+            cursor: pointer;
+            font-family: 'Outfit', system-ui, sans-serif;
+            letter-spacing: 1px;
+            flex-shrink: 0;
+        }
+        .btn-close-support {
+            width: 100%;
+            background: transparent;
+            border: 1px solid #333;
+            color: #666;
+            padding: 12px;
+            border-radius: 10px;
+            font-family: 'Outfit', system-ui, sans-serif;
+            font-size: 0.68rem;
+            cursor: pointer;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .auth-hero { min-height: 36vh; }
+            .auth-sheet {
+                animation: none;
+            }
+            .support-overlay {
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+        }
+
+        @media (min-width: 520px) {
+            body {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 24px;
+                background:
+                    radial-gradient(ellipse at 50% 0%, rgba(126,184,255,0.06) 0%, transparent 50%),
+                    var(--bg);
+            }
+            .auth-shell {
+                min-height: auto;
+                border-radius: 28px;
+                overflow: hidden;
+                border: 1px solid var(--border);
+                box-shadow: 0 40px 100px rgba(0,0,0,0.7);
+            }
+            .auth-hero { min-height: 280px; }
+            .auth-sheet {
+                border-radius: 0;
+                margin-top: 0;
+                border: none;
+                box-shadow: none;
+            }
+            .auth-sheet::before { display: none; }
+        }
+    </style>
+</head>
+<body class="devonax-ui devonax-auth">
+    <div class="auth-shell">
+        <div class="auth-hero">
+            <div class="auth-hero-top">
+                <div class="auth-hero-mark"><i class="fas fa-mask"></i></div>
+                <div class="auth-hero-banner" role="img" aria-label="Banner">
+                    <img src="/banner-image?v=gif" alt="Devonax banner" loading="eager" decoding="async">
+                    <div class="auth-hero-banner-overlay"></div>
+                </div>
+            </div>
+            <h2 class="auth-hero-title">Selamat Datang<br>Di Devonax Project</h2>
+            <p class="auth-hero-sub">Kelola bot WhatsApp 24/7 · Multi-instance · Anti-stop</p>
+        </div>
+
+        <div class="auth-sheet">
+            <h1>LOGIN</h1>
+            <div class="subtitle">Masuk ke sistem</div>
+
+            <form id="loginForm">
+                <div class="field">
+                    <label>Nama Pengguna</label>
+                    <div class="input-wrap">
+                        <input type="text" id="username" placeholder="Masukkan username..." required autocomplete="off">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Kata Sandi</label>
+                    <div class="input-wrap">
+                        <input type="password" id="password" placeholder="Masukkan password..." required>
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="forgot-link">
+                        <button type="button" onclick="openSupportModal()">Lupa password? Reset via WA Admin</button>
+                    </div>
+                </div>
+
+                <div class="turnstile-wrap" id="turnstileWrap" style="display:none;">
+                    <div class="cf-turnstile" data-sitekey="0x4AAAAAADJOCqQu9He1h4R1" data-theme="dark"></div>
+                </div>
+
+                <button type="submit" class="btn">
+                    <i class="fas fa-right-to-bracket" style="margin-right:8px;"></i>Masuk Sekarang
+                </button>
+            </form>
+
+            <div id="message"></div>
+            <div class="footer-links">
+                Belum punya akses? <a href="/register">Daftar di Sini</a><br>
+                <button type="button" onclick="openSupportModal()" style="background:none;border:none;color:rgba(255,255,255,0.35);font-family:'Outfit', system-ui, sans-serif;font-size:0.82rem;margin-top:10px;cursor:pointer;">Lapor / Bantuan WA Admin</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="supportModal" class="support-overlay" onclick="if(event.target===this) closeSupportModal()">
+        <div class="support-card">
+            <h3>LAPORAN KE WA ADMIN</h3>
+            <p class="sub">Reset password &amp; bantuan akun hanya via WhatsApp admin. Salin nomor, lalu chat manual.</p>
+
+            <div class="support-wa-block">
+                <div class="support-wa-row">
+                    <div>
+                        <div class="support-wa-label">WHATSAPP ADMIN</div>
+                        <div id="adminWaNumber" class="support-wa-number">0857-0727-7941</div>
+                    </div>
+                    <button type="button" class="btn-copy-wa" onclick="copyWaNumber(this)">SALIN NOMOR</button>
+                </div>
+            </div>
+
+            <div class="support-warn">DILARANG SPAM CHAT ATAU TELEPON</div>
+
+            <div class="support-reset-box">
+                <h4>RESET PASSWORD</h4>
+                <p>Kirim pesan WA dengan bukti berikut (wajib):</p>
+                <ul class="support-reset-list">
+                    <li>WAJIB ADA BUKTI KEPEMILIKAN AKUN</li>
+                    <li>USERNAME AKUN</li>
+                    <li>BUKTI LOGIN AKUN</li>
+                    <li>SS BUKTI TF AKUN KALO ADA</li>
+                </ul>
+            </div>
+
+            <button type="button" class="btn-close-support" onclick="closeSupportModal()">TUTUP</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (!window.__SKIP_TURNSTILE__) {
+                var w = document.getElementById('turnstileWrap');
+                if (w) w.style.display = 'flex';
+            }
+            fetch('/api/auth/settings').then(function (r) { return r.json(); }).then(function (data) {
+                if (data.success && data.adminWaNumber) {
+                    var el = document.getElementById('adminWaNumber');
+                    if (el) el.textContent = data.adminWaNumber;
+                }
+            }).catch(function () {});
+        });
+
+        function showMsg(text, type) {
+            const el = document.getElementById('message');
+            el.style.display = 'block'; el.className = type; el.innerText = text;
+        }
+
+        function openSupportModal() {
+            document.getElementById('supportModal').style.display = 'flex';
+        }
+        function closeSupportModal() {
+            document.getElementById('supportModal').style.display = 'none';
+        }
+        function copyWaNumber(btn) {
+            const text = document.getElementById('adminWaNumber').innerText.trim();
+            const orig = btn.innerHTML;
+            function done() {
+                btn.innerHTML = 'TERSALIN';
+                setTimeout(function () { btn.innerHTML = orig; }, 2000);
+            }
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(done).catch(function () {
+                    const ta = document.createElement('textarea');
+                    ta.value = text;
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(ta);
+                    done();
+                });
+            } else {
+                done();
+            }
+        }
+
+        document.getElementById('loginForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            showMsg('Memverifikasi data...', '');
+
+            try {
+                var tsEl = document.querySelector('[name="cf-turnstile-response"]');
+                var turnstileResponse = window.__SKIP_TURNSTILE__ ? 'local-dev' : (tsEl && tsEl.value);
+                if (!window.__SKIP_TURNSTILE__ && !turnstileResponse) { showMsg('Silakan selesaikan verifikasi Turnstile!', 'error'); return; }
+
+                const res = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password, turnstileResponse })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    showMsg('Akses Diterima. Mengalihkan...', 'success');
+                    try {
+                        const pf = document.createElement('link');
+                        pf.rel = 'prefetch';
+                        pf.href = 'dashboard.html';
+                        document.head.appendChild(pf);
+                    } catch (_) {}
+                    window.location.replace('dashboard.html');
+                } else {
+                    showMsg(data.message, 'error');
+                    if (typeof turnstile !== 'undefined') turnstile.reset();
+                }
+            } catch (err) {
+                showMsg('Gagal terhubung ke server.', 'error');
+                if (typeof turnstile !== 'undefined') turnstile.reset();
+            }
+        };
+    </script>
+</body>
+</html>
